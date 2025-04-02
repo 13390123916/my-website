@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辽宁省揭榜挂帅榜单系统</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --hover-color: #2980b9;
+            --bg-color: #0f172a;
+            --glow-color: #60a5fa;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: var(--bg-color);
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
+                linear-gradient(45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.2) 75%),
+                linear-gradient(-45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.2) 75%);
+            background-size: 100px 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            color: white;
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .nav-button {
+            padding: 25px 80px;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 30px var(--glow-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        @media (max-width: 768px) {
+            .nav-button {
+                width: 90%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header">辽宁省高质量科技成果和企业技术需求双向"揭榜挂帅"</h1>
+
+    <div class="button-container">
+        <a href="demand.html"><button class="nav-button">技术需求榜单</button></a>
+        <a href="achievement.html"><button class="nav-button">科技成果榜单</button></a>
+    </div>
+</body>
+
+</html>

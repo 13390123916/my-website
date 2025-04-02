@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科技成果榜单</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --hover-color: #2980b9;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* 添加科技感背景效果 */
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%),
+                linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--primary-color);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            padding: 16px;
+            position: sticky;
+            left: 0;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        tr:hover td {
+            background: #f5faff !important;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+
+            td,
+            th {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header">科技成果榜单</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>序 号</th>
+                    <th>成果名称</th>
+                    <th>单位名称</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- 此处将通过 JavaScript 动态添加科技成果数据 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 创建数组 achievements
+        const achievements = [
+    { id: 1, name: '生产全流程管理决策与控制一体化系统', unit: '东北大学' },
+    { id: 2, name: '选矿智能化生产管理决策与控制一体化平台', unit: '东北大学' },
+    { id: 3, name: '新型高端铜基精密超硬磨削砂轮', unit: '东北大学' },
+    { id: 4, name: '高速高并发自适应信道化采样技术和模块', unit: '东北大学' },
+    { id: 5, name: '低成本快速制备高性能铜钛合金技术', unit: '东北大学' },
+    { id: 6, name: '大宗工业固废大掺量制备装配式预制非结构构件技术', unit: '东北大学' },
+    { id: 7, name: '高硅钢材料的卷取温轧装置及作业流程技术', unit: '东北大学' },
+    { id: 8, name: '真空镀膜机所用的蒸发装置', unit: '东北大学' },
+    { id: 9, name: '强磁选别作业的运行调控策略', unit: '东北大学' },
+    { id: 10, name: '城市供水管网漏损智能检测与控制装备', unit: '大连理工大学' },
+    { id: 11, name: '生活垃圾源头全组分资源化技术', unit: '大连理工大学' },
+    { id: 12, name: '医学图像配准研究', unit: '大连理工大学' },
+    { id: 13, name: '具有可见光催化氧化C-H键性能的拟酶后修饰铁卟啉基金属有机框架的制备方法及应用', unit: '大连理工大学' },
+    { id: 14, name: '控制声波传播路径的低频宽带超薄声波吸收、隔离和扩散结构', unit: '大连理工大学' },
+    { id: 15, name: '瓷刚铝新材料', unit: '大连理工大学' },
+    { id: 16, name: '宽带隙半导体辐射探测器', unit: '大连理工大学' },
+    { id: 17, name: '水润瞬显智能显色媒介', unit: '大连理工大学' },
+    { id: 18, name: '大温度范围高可靠性核级泵氮化硅滑动轴承及其设计软件', unit: '大连理工大学' },
+    { id: 19, name: '氢化C9石油树脂的制备流程', unit: '大连理工大学' },
+    { id: 20, name: '网箱水流效应高级仿真平台系统', unit: '大连理工大学' },
+    { id: 21, name: '柴油机碰撞分流燃烧室', unit: '大连理工大学' },
+    { id: 22, name: '多功能融合的多孔膜材料及其生产与使用', unit: '中国科学院大连化学物理研究所' },
+    { id: 23, name: '中空纤维膜接触器及其应用技术', unit: '中国科学院大连化学物理研究所' },
+    { id: 24, name: '燃料电池CCM膜电极的制备技术', unit: '中国科学院大连化学物理研究所' },
+    { id: 25, name: '具有对耐药白血病和胃肠道间质瘤双重抑制作用的新药普环替尼技术研究', unit: '辽宁大学' },
+    { id: 26, name: '高性能电致变色器件', unit: '辽宁大学' },
+    { id: 27, name: '适合现场快速使用的石墨烯场生物传感器监测平台-用于各种肿瘤的早期发现、分型和监测平台', unit: '中国医科大学' },
+    { id: 28, name: '低分散度壳聚糖载黄芪多糖纳米粒（LCA）一种用于多种恶性肿瘤患者的新辅助化疗药物', unit: '中国医科大学' },
+    { id: 29, name: '毫米级微小病灶病理精准取材荧光定位针', unit: '中国医科大学' },
+    { id: 30, name: '神经导航研发', unit: '中国医科大学' },
+    { id: 31, name: '高性能镁合金及其致密成型与轻量化技术', unit: '沈阳工业大学' },
+    { id: 32, name: '电制热储热提升电网消纳风电能力的关键技术', unit: '沈阳工业大学' },
+    { id: 33, name: '4 - 7MW兆瓦级变速恒频风电机组', unit: '沈阳工业大学' },
+    { id: 34, name: '转子低周疲劳裂纹监测装置', unit: '沈阳工业大学' },
+    { id: 35, name: '采用复合冷却设计的电动机结构', unit: '沈阳工业大学' },
+    { id: 36, name: '外加电场调节下的黑磷烯热导率调控技术', unit: '沈阳工业大学' },
+    { id: 37, name: '双向数字开关功率放大器及其多步电流预测控制方法', unit: '沈阳工业大学' },
+    { id: 38, name: '辅助针灸教学的多位置压力传感医用模拟人偶', unit: '沈阳工程学院' },
+    { id: 39, name: '半导体激光加热型快速热重测量系统及分析技术平台', unit: '沈阳工程学院' },
+    { id: 40, name: '氢能助燃稳定煤粉燃烧的集成系统', unit: '沈阳工程学院' },
+    { id: 41, name: '磨煤机通风量预估方案、配套系统、实施设备及存储介质', unit: '沈阳工程学院' },
+    { id: 42, name: '水产凝胶休闲食品加工关键技术研究及产业化', unit: '大连工业大学' },
+    { id: 43, name: '超高异形建筑用施工平台关键技术与装备研发', unit: '沈阳建筑大学' },
+    { id: 44, name: '低碳排装配复杂预制混凝土构件智能化监管控技术', unit: '沈阳建筑大学' },
+    { id: 45, name: '锂离子电池溶剂电子级碳酸乙烯酯、碳酸丙烯酯、碳酸二甲酯、碳酸甲乙酯以及碳酸二乙酯合成非均相催化剂及配套工艺', unit: '沈阳化工大学' },
+    { id: 46, name: '年产300吨微米级碱式硫酸镁晶须生产工艺', unit: '沈阳化工大学' },
+    { id: 47, name: '采用机器视觉技术的数控机床智能化对刀系统', unit: '沈阳工学院' },
+    { id: 48, name: '基于改进随机配置网络的同步发电机励磁电流预测方法', unit: '沈阳工学院' },
+    { id: 49, name: '柳芽总黄酮提取物及其制备方法和应用', unit: '沈阳工学院' },
+    { id: 50, name: '基于大数据云计算的车辆导航系统及其运作', unit: '辽宁工业大学' },
+    { id: 51, name: '基于驾驶员特性的汽车安全驾驶预警技术', unit: '辽宁工业大学' },
+    { id: 52, name: '高可靠高密度集成无刷直流电动机驱动装置', unit: '辽宁工业大学' },
+    { id: 53, name: '高功率密度超级电容器储能监测管理系统', unit: '辽宁工业大学' },
+    { id: 54, name: 'SPH3127原料药的合成', unit: '辽宁工业大学' },
+    { id: 55, name: '钼酸铵酸洗废水氨氮超标废水脱氨氮研究', unit: '辽宁工业大学' },
+    { id: 56, name: '橙绿双色调环保颜料高效合成技术', unit: '辽宁工业大学' },
+    { id: 57, name: '醇法合成R/S构型4-氯-3-羟基丁腈技术', unit: '辽宁工业大学' },
+    { id: 58, name: '伊利石高效综合利用技术研究', unit: '辽宁工业大学' },
+    { id: 59, name: '新型多重缓释脲醛复合肥生产技术', unit: '辽宁工业大学' },
+    { id: 60, name: '可调阻尼氮气减振器', unit: '辽宁工业大学' },
+    { id: 61, name: '双筒式阻尼可调减振器', unit: '辽宁工业大学' },
+    { id: 62, name: '新能源商用车混合动力起发电机技术开发', unit: '辽宁工业大学' },
+    { id: 63, name: '智能变频电驱助力骑行系统', unit: '辽宁工业大学' },
+    { id: 64, name: '智能物流AGV关键技术研究与产品开发', unit: '辽宁工业大学' },
+    { id: 65, name: '基于物联网智能感知系统的氮气储粮罐式集装箱研究', unit: '辽宁工业大学' },
+    { id: 66, name: '新能源电池用新型复合铜箔', unit: '辽宁工业大学' },
+    { id: 67, name: '基于人工智能技术的自动印刷装配机械', unit: '辽宁工业大学' },
+    { id: 68, name: '全方位智能保护安全气囊系统', unit: '辽宁工业大学' },
+    { id: 69, name: '乘客约束性安全防护气囊', unit: '辽宁工业大学' },
+    { id: 70, name: '车辆后部窗帘型安全保护气囊', unit: '辽宁工业大学' },
+    { id: 71, name: '汽车电控减振器示功系统', unit: '辽宁工业大学' },
+    { id: 72, name: '汽车电控减振器内置阀测试系统', unit: '辽宁工业大学' },
+    { id: 73, name: '水下轻量化侦察捕获移动机器人研发与应用', unit: '辽宁工业大学' },
+    { id: 74, name: '装配式墙板与建筑主体弹性消能的连接装置', unit: '辽宁工业大学' },
+    { id: 75, name: '装配式复合夹芯墙板连接件', unit: '辽宁工业大学' },
+    { id: 76, name: '高溶解、高催化活性单晶β-MoO3关键制备技术及产业化', unit: '辽宁工业大学' },
+    { id: 77, name: '高分散高纯钼粉关键制备技术研发及产业化', unit: '辽宁工业大学' },
+    { id: 78, name: '益生菌-药食同源成分协同发酵功能食品', unit: '锦州医科大学' },
+    { id: 79, name: '基于锁波技术的光电模组', unit: '辽东学院' },
+    { id: 80, name: '生态环保功能纱线试纺与产品开发', unit: '辽东学院' },
+    { id: 81, name: '直接二甲醚燃料电池关键技术与应用', unit: '渤海大学' },
+    { id: 82, name: '超细GOS粉体制备工艺研究', unit: '渤海大学' },
+    { id: 83, name: '石榴籽状纳米复合材料在钾离子电池中的制备及其应用', unit: '渤海大学' },
+    { id: 84, name: '等离子喷涂纳米结构热障涂层液体喂料的制备流程', unit: '渤海大学' },
+    { id: 85, name: '集成电路刻蚀用24英寸超大直径半导体单晶硅工艺研发及产业化应用', unit: '渤海大学' },
+    { id: 86, name: '集成电路刻蚀用无氮半导体多晶硅材料研发及产业化应用', unit: '渤海大学' },
+    { id: 87, name: '集成红外隐身、电磁屏蔽和人体热管理可穿戴皮革的研发', unit: '渤海大学' },
+    { id: 88, name: '不对称合成试剂叔丁基亚磺酰胺（S型与R型）绿色制备及产业化技术', unit: '渤海大学' },
+    { id: 89, name: '预调理禽肉制品品质提升及口感保真关键技术', unit: '渤海大学' },
+    { id: 90, name: '啤酒花及啤酒加工副产物在健康食品中应用', unit: '渤海大学' },
+    { id: 91, name: '鱼糜及鱼糜制品高质化加工关键技术与新产品开发', unit: '渤海大学' },
+    { id: 92, name: '海参及加工副产物高值化利用关键技术研发及产业化', unit: '渤海大学' },
+    { id: 93, name: '外转子永磁同步电机直接驱动的煤矿带式输送机辊筒技术', unit: '辽宁工程技术大学' },
+    { id: 94, name: '基于BDS四频信号的周跳检测技术', unit: '辽宁工程技术大学' },
+    { id: 95, name: '立式结构不锈钢包覆立柱的再制造修复装置', unit: '辽宁工程技术大学' },
+    { id: 96, name: '大模型+垂直行业融合服务技术平台', unit: '营口理工学院' },
+    { id: 97, name: '多组元纳米金属聚合物涂层材料制备及应用', unit: '营口理工学院' },
+    { id: 98, name: '草本生物质碳化/气化与尾气碳捕集利用耦合系统研究', unit: '营口理工学院' },
+    { id: 99, name: '自助式测试平台系统', unit: '辽宁石化职业技术学院' },
+    { id: 100, name: '便携式词汇展板', unit: '辽宁石化职业技术学院' },
+    { id: 101, name: '具有良好私密性的舒缓床', unit: '辽宁石化职业技术学院' },
+    { id: 102, name: '词汇记忆智能手环', unit: '辽宁石化职业技术学院' },
+    { id: 103, name: '电流互感器超微晶磁芯参数的计算方式', unit: '朝阳师范学院' },
+    { id: 104, name: '多金属尾矿磷矿物浮选的捕收剂制备及其应用场景', unit: '朝阳师范学院' },
+    { id: 105, name: '残差加权成像技术与相关装置', unit: '东软医疗系统股份有限公司' },
+    { id: 106, name: '时间校正策略、配套装置及所需设备', unit: '东软医疗系统股份有限公司' },
+    { id: 107, name: '矿井巷道内车辆的路径规划方法及装置、电子设备', unit: '三一重型装备有限公司' },
+    { id: 108, name: '巷道作业机械实时定位方法、系统及作业机械', unit: '三一重型装备有限公司' },
+    { id: 109, name: '烟气余热利用型氧化铝焙烧炉的进料系统', unit: '沈阳铝镁设计研究院有限公司' },
+    { id: 110, name: '铝电解槽铝液电流分布优化技术', unit: '沈阳铝镁设计研究院有限公司' },
+    { id: 111, name: '大型石墨化炉及其综合生产流程', unit: '沈阳铝镁设计研究院有限公司' },
+    { id: 112, name: '木蝴蝶苷B在制备用于预防、控制和/或治疗眼部疾病药物中的用途', unit: '沈阳兴齐眼药股份有限公司' },
+    { id: 113, name: '一种同时检测聚乙烯瓶中六种酚醛类抗氧剂及抗氧剂降解物的方法', unit: '沈阳兴齐眼药股份有限公司' },
+    { id: 114, name: '高速内燃动车组用车下布置动力集成系统', unit: '中车大连机车研究所有限公司' },
+    { id: 115, name: '机车火灾预防与控制系统', unit: '中车大连机车研究所有限公司' },
+    { id: 116, name: '可控制多段燃烧的焦炉加热技术', unit: '中冶焦耐（大连）工程技术有限公司' },
+    { id: 117, name: '变截面设计的蓄热室小烟道', unit: '中冶焦耐（大连）工程技术有限公司' },
+    { id: 118, name: '以豆类为主要原料的清甜果汁软饮料研发', unit: '渤海大学' },
+    { id: 119, name: '休闲调味膨化鱼糜制品的制备流程', unit: '渤海大学' },
+    { id: 120, name: '富含大豆肽、大豆异黄酮、大豆低聚糖等营养因子的功能性产品开发', unit: '渤海大学' },
+    { id: 121, name: '现代苹果集约矮化栽培关键技术', unit: '中国农业科学院果树研究所' }
+];
+
+        // 获取表格的 tbody 元素
+        const tableBody = document.getElementById('table-body');
+
+        // 遍历 achievements 数组，为每个成果创建一行表格数据
+        achievements.forEach(achievement => {
+            const row = document.createElement('tr');
+
+            const idCell = document.createElement('td');
+            idCell.textContent = achievement.id;
+            row.appendChild(idCell);
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = achievement.name;
+            row.appendChild(nameCell);
+
+            const unitCell = document.createElement('td');
+            unitCell.textContent = achievement.unit;
+            row.appendChild(unitCell);
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+
+</html>
