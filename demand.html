@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 增加支持缩放的属性 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.5, user-scalable=yes">
     <title>技术需求榜单</title>
     <style>
         :root {
@@ -100,39 +101,39 @@
     <script>
         // 创建数组 demands
         const demands = [
-    { id: 1, name: '基于大模型和AI数字人的民航智能服务平台研发及应用', company: '沈阳民航东北凯亚有限公司', city: '沈阳市' },
-    { id: 2, name: '水体底泥重金属污染治理与修复需求', company: '辽宁省水利水电勘测设计研究院有限责任公司', city: '沈阳市' },
-    { id: 3, name: '鹿系列小分子肽研发技术需求', company: '北京同仁堂（辽宁）科技药业有限公司', city: '沈阳市' },
-    { id: 4, name: '细胞成瘤性快速检测方法', company: '复星雅立峰（大连）生物制药有限公司', city: '大连市' },
-    { id: 5, name: '基于膜分离的从天然气中提取制备超高纯氦气关键技术研发与应用', company: '大连欧科膜技术工程有限公司', city: '大连市' },
-    { id: 6, name: '铁矿资源球团全流程智能控制关键技术及应用', company: '鞍钢集团矿业有限公司', city: '鞍山市' },
-    { id: 7, name: 'CCUS体系下低温、低压大型液化二氧化碳运输船用低温钢关键技术研究', company: '鞍钢股份有限公司', city: '鞍山市' },
-    { id: 8, name: '关于塑料端护板替代铁制品端护板的需求', company: '鞍山冶金集团冷轧新材料有限公司', city: '鞍山市' },
-    { id: 9, name: '镁耐火以外行业的菱镁矿尾矿综合利用研究', company: '辽宁利尔镁质合成材料股份有限公司', city: '鞍山市' },
-    { id: 10, name: '无机改性镁硅复配阻燃材料研制的关键技术', company: '辽宁精华新材料股份有限公司', city: '鞍山市' },
-    { id: 11, name: '超强性能耐磨合金材料技术攻关研究', company: '辽宁丰德耐磨新材料制品有限公司', city: '鞍山市' },
-    { id: 12, name: '纳米碳材料的改性与高效应用', company: '辽宁奥亿达新材料股份有限公司', city: '鞍山市' },
-    { id: 13, name: '采煤沉陷区地表精细形变星地协同监测关键技术研究的需求', company: '辽宁省第十地质大队有限责任公司', city: '抚顺市' },
-    { id: 14, name: '储热技术，用于平衡供热负荷，提高能源利用效率需求', company: '辽宁华兴热电集团有限公司', city: '本溪市' },
-    { id: 15, name: '新能源多能互补及利用技术', company: '本溪华通智慧能源有限公司', city: '本溪市' },
-    { id: 16, name: '科研赋能中草药深加工技术', company: '辽宁同源健康产业有限公司', city: '本溪市' },
-    { id: 17, name: '人参、红参等药食同源中药活性物质加工过程中变化规律及控制措施的研究与应用', company: '行天健药业集团有限公司', city: '本溪市' },
-    { id: 18, name: '研发新资源食品、药食同源产品、黑参作为食品原料的应用、特殊膳食及其功效、西药生产技术在普通食品和特殊膳食领域的应用等，及标准的起草和建立需求', company: '桓仁健康源生态农业开发有限公司', city: '本溪市' },
-    { id: 19, name: 'SPH3127 - B中试产业化关键技术研究', company: '上海医药集团（本溪）北方药业有限公司', city: '本溪市' },
-    { id: 20, name: '基于高效原位检测分析技术的矿产资源透明地质信息系统的研发与应用', company: '丹东东方测控技术股份有限公司', city: '丹东市' },
-    { id: 21, name: '带有电控差速系统的车桥研发', company: '辽宁曙光汽车集团股份有限公司', city: '丹东市' },
-    { id: 22, name: '二氧化钛有机改性剂TME/TMP的差异及绿色环保有机剂替代技术', company: '中信钛业股份有限公司', city: '锦州市' },
-    { id: 23, name: '全纸化包装技术研究与新产品开发', company: '辽宁春光制药装备股份有限公司', city: '锦州市' },
-    { id: 24, name: '高品级ZnS红外材料制备技术研发及产业化', company: '锦州天泰金属粉末加工有限公司', city: '锦州市' },
-    { id: 25, name: '调理鸡肉制品现代化加工技术升级及产品创制的需求', company: '辽宁圣源食品有限公司', city: '锦州市' },
-    { id: 26, name: '高压陶瓷用特殊涂层技术', company: '辽宁英冠高技术陶瓷股份有限公司', city: '锦州市' },
-    { id: 27, name: '开发新型耐候性高性能聚烯烃复合材料，解决其老化问题并产业化需求', company: '辽宁兴嘉新材料有限公司', city: '锦州市' },
-    { id: 28, name: '集成电路刻蚀用半导体级24英寸超大直径单晶硅工艺研发及产业化应用需求', company: '锦州神工半导体股份有限公司', city: '锦州市' },
-    { id: 29, name: '石墨提纯技术', company: '锦州大业炭素制品有限公司', city: '锦州市' },
-    { id: 30, name: '利用食用菌母液制作功能性饮料技术', company: '锦州市福莱仕科技发展有限公司', city: '锦州市' },
-    { id: 31, name: '富硒系列海参饲料研发与海参精深加工、高值化培育的技术', company: '安源种业（辽宁）有限公司', city: '锦州市' },
-    { id: 32, name: '硅锂电池技术', company: '硅世新能电池（辽宁）有限公司', city: '锦州市' },
-    { id: 33, name: '数字化压铸车间整体解决方案', company: '锦州华一精工有限公司', city: '锦州市' },
+            { id: 1, name: '基于大模型和AI数字人的民航智能服务平台研发及应用', company: '沈阳民航东北凯亚有限公司', city: '沈阳市' },
+            { id: 2, name: '水体底泥重金属污染治理与修复需求', company: '辽宁省水利水电勘测设计研究院有限责任公司', city: '沈阳市' },
+            { id: 3, name: '鹿系列小分子肽研发技术需求', company: '北京同仁堂（辽宁）科技药业有限公司', city: '沈阳市' },
+            { id: 4, name: '细胞成瘤性快速检测方法', company: '复星雅立峰（大连）生物制药有限公司', city: '大连市' },
+            { id: 5, name: '基于膜分离的从天然气中提取制备超高纯氦气关键技术研发与应用', company: '大连欧科膜技术工程有限公司', city: '大连市' },
+            { id: 6, name: '铁矿资源球团全流程智能控制关键技术及应用', company: '鞍钢集团矿业有限公司', city: '鞍山市' },
+            { id: 7, name: 'CCUS体系下低温、低压大型液化二氧化碳运输船用低温钢关键技术研究', company: '鞍钢股份有限公司', city: '鞍山市' },
+            { id: 8, name: '关于塑料端护板替代铁制品端护板的需求', company: '鞍山冶金集团冷轧新材料有限公司', city: '鞍山市' },
+            { id: 9, name: '镁耐火以外行业的菱镁矿尾矿综合利用研究', company: '辽宁利尔镁质合成材料股份有限公司', city: '鞍山市' },
+            { id: 10, name: '无机改性镁硅复配阻燃材料研制的关键技术', company: '辽宁精华新材料股份有限公司', city: '鞍山市' },
+            { id: 11, name: '超强性能耐磨合金材料技术攻关研究', company: '辽宁丰德耐磨新材料制品有限公司', city: '鞍山市' },
+            { id: 12, name: '纳米碳材料的改性与高效应用', company: '辽宁奥亿达新材料股份有限公司', city: '鞍山市' },
+            { id: 13, name: '采煤沉陷区地表精细形变星地协同监测关键技术研究的需求', company: '辽宁省第十地质大队有限责任公司', city: '抚顺市' },
+            { id: 14, name: '储热技术，用于平衡供热负荷，提高能源利用效率需求', company: '辽宁华兴热电集团有限公司', city: '本溪市' },
+            { id: 15, name: '新能源多能互补及利用技术', company: '本溪华通智慧能源有限公司', city: '本溪市' },
+            { id: 16, name: '科研赋能中草药深加工技术', company: '辽宁同源健康产业有限公司', city: '本溪市' },
+            { id: 17, name: '人参、红参等药食同源中药活性物质加工过程中变化规律及控制措施的研究与应用', company: '行天健药业集团有限公司', city: '本溪市' },
+            { id: 18, name: '研发新资源食品、药食同源产品、黑参作为食品原料的应用、特殊膳食及其功效、西药生产技术在普通食品和特殊膳食领域的应用等，及标准的起草和建立需求', company: '桓仁健康源生态农业开发有限公司', city: '本溪市' },
+            { id: 19, name: 'SPH3127 - B中试产业化关键技术研究', company: '上海医药集团（本溪）北方药业有限公司', city: '本溪市' },
+            { id: 20, name: '基于高效原位检测分析技术的矿产资源透明地质信息系统的研发与应用', company: '丹东东方测控技术股份有限公司', city: '丹东市' },
+            { id: 21, name: '带有电控差速系统的车桥研发', company: '辽宁曙光汽车集团股份有限公司', city: '丹东市' },
+            { id: 22, name: '二氧化钛有机改性剂TME/TMP的差异及绿色环保有机剂替代技术', company: '中信钛业股份有限公司', city: '锦州市' },
+            { id: 23, name: '全纸化包装技术研究与新产品开发', company: '辽宁春光制药装备股份有限公司', city: '锦州市' },
+            { id: 24, name: '高品级ZnS红外材料制备技术研发及产业化', company: '锦州天泰金属粉末加工有限公司', city: '锦州市' },
+            { id: 25, name: '调理鸡肉制品现代化加工技术升级及产品创制的需求', company: '辽宁圣源食品有限公司', city: '锦州市' },
+            { id: 26, name: '高压陶瓷用特殊涂层技术', company: '辽宁英冠高技术陶瓷股份有限公司', city: '锦州市' },
+            { id: 27, name: '开发新型耐候性高性能聚烯烃复合材料，解决其老化问题并产业化需求', company: '辽宁兴嘉新材料有限公司', city: '锦州市' },
+            { id: 28, name: '集成电路刻蚀用半导体级24英寸超大直径单晶硅工艺研发及产业化应用需求', company: '锦州神工半导体股份有限公司', city: '锦州市' },
+            { id: 29, name: '石墨提纯技术', company: '锦州大业炭素制品有限公司', city: '锦州市' },
+            { id: 30, name: '利用食用菌母液制作功能性饮料技术', company: '锦州市福莱仕科技发展有限公司', city: '锦州市' },
+            { id: 31, name: '富硒系列海参饲料研发与海参精深加工、高值化培育的技术', company: '安源种业（辽宁）有限公司', city: '锦州市' },
+            { id: 32, name: '硅锂电池技术', company: '硅世新能电池（辽宁）有限公司', city: '锦州市' },
+            { id: 33, name: '数字化压铸车间整体解决方案', company: '锦州华一精工有限公司', city: '锦州市' },
     { id: 34, name: '智能存储系统开发技术', company: '辽宁三色系统集成服务有限公司', city: '锦州市' },
     { id: 35, name: '新一代高铁CR450用高强韧纳米ADI铸件核心技术研发', company: '锦州捷通铁路机械股份有限公司', city: '锦州市' },
     { id: 36, name: '减震器用电磁阀制造技术', company: '锦州万友机械部件有限公司', city: '锦州市' },
@@ -177,31 +178,17 @@
     { id: 75, name: '基于大功率凿岩钎具用钢以及相关热处理技术', company: '莲花山凿岩钎具有限公司', city: '葫芦岛市' },
     { id: 76, name: '全氟磺酸树脂制膜过程的结构演变规律的需求', company: '辽宁科京新材料有限公司', city: '沈抚示范区' },
     { id: 77, name: '煤矿移动机器人复杂环境自适应方法研究', company: '中煤科工机器人科技有限公司', city: '沈抚示范区' }
-];
+]
 
-        // 获取表格的 tbody 元素
         const tableBody = document.getElementById('table-body');
-
-        // 遍历 demands 数组，为每个需求创建一行表格数据
-        demands.forEach(demand => {
+        demands.forEach((demand) => {
             const row = document.createElement('tr');
-
-            const idCell = document.createElement('td');
-            idCell.textContent = demand.id;
-            row.appendChild(idCell);
-
-            const nameCell = document.createElement('td');
-            nameCell.textContent = demand.name;
-            row.appendChild(nameCell);
-
-            const companyCell = document.createElement('td');
-            companyCell.textContent = demand.company;
-            row.appendChild(companyCell);
-
-            const cityCell = document.createElement('td');
-            cityCell.textContent = demand.city;
-            row.appendChild(cityCell);
-
+            row.innerHTML = `
+                <td>${demand.id}</td>
+                <td>${demand.name}</td>
+                <td>${demand.company}</td>
+                <td>${demand.city}</td>
+            `;
             tableBody.appendChild(row);
         });
     </script>
