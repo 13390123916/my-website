@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
-    <!-- 修改 viewport 属性，允许用户缩放 -->
+    <!-- 关键修改：添加 minimum-scale 参数 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.5, user-scalable=yes">
     <title>科技成果榜单</title>
     <style>
@@ -12,23 +11,19 @@
             --secondary-color: #3498db;
             --hover-color: #2980b9;
         }
-
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             margin: 0;
             padding: 20px;
-            /* 添加科技感背景效果 */
             background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%),
                 linear-gradient(135deg, #0f2027, #203a43, #2c5364);
         }
-
         .header {
             text-align: center;
             margin: 30px 0;
             color: var(--primary-color);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
-
         .table-container {
             background: white;
             border-radius: 12px;
@@ -37,13 +32,11 @@
             margin: 0 auto;
             max-width: 1200px;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             min-width: 800px;
         }
-
         th {
             background: var(--primary-color);
             color: white;
@@ -53,23 +46,18 @@
             font-weight: 600;
             border-bottom: 3px solid var(--secondary-color);
         }
-
         td {
             padding: 14px 16px;
             border-bottom: 1px solid #eee;
             transition: background 0.2s;
         }
-
         tr:hover td {
             background: #f5faff !important;
         }
-
         tr:nth-child(even) {
             background: #f9f9f9;
         }
-
         @media (max-width: 768px) {
-
             td,
             th {
                 padding: 12px;
@@ -78,10 +66,8 @@
         }
     </style>
 </head>
-
 <body>
     <h1 class="header">科技成果榜单</h1>
-
     <div class="table-container">
         <table>
             <thead>
@@ -96,9 +82,7 @@
             </tbody>
         </table>
     </div>
-
     <script>
-        // 创建数组 achievements
         const achievements = [
             { id: 1, name: '生产全流程管理决策与控制一体化系统', unit: '东北大学' },
             { id: 2, name: '选矿智能化生产管理决策与控制一体化平台', unit: '东北大学' },
@@ -221,30 +205,18 @@
             { id: 119, name: '休闲调味膨化鱼糜制品的制备流程', unit: '渤海大学' },
             { id: 120, name: '富含大豆肽、大豆异黄酮、大豆低聚糖等营养因子的功能性产品开发', unit: '渤海大学' },
             { id: 121, name: '现代苹果集约矮化栽培关键技术', unit: '中国农业科学院果树研究所' }
-         ]
+        ];
 
-
-        // 获取表格主体元素
         const tableBody = document.getElementById('table-body');
-
-        // 遍历 achievements 数组，为每个成果创建一个表格行
         achievements.forEach((achievement) => {
             const row = document.createElement('tr');
-            const idCell = document.createElement('td');
-            const nameCell = document.createElement('td');
-            const unitCell = document.createElement('td');
-
-            idCell.textContent = achievement.id;
-            nameCell.textContent = achievement.name;
-            unitCell.textContent = achievement.unit;
-
-            row.appendChild(idCell);
-            row.appendChild(nameCell);
-            row.appendChild(unitCell);
-
+            row.innerHTML = `
+                <td>${achievement.id}</td>
+                <td>${achievement.name}</td>
+                <td>${achievement.unit}</td>
+            `;
             tableBody.appendChild(row);
         });
     </script>
 </body>
-
-</html>    
+</html>
